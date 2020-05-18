@@ -57,12 +57,14 @@ public class Utils {
         return s;
     }
 
+	@SuppressWarnings("static-access")
 	static boolean isConstantFalse(List<String> tokens) {
-		return (tokens.size() == 1 && tokens.get(0).equals("False")) ? true : false ; 
+		return (tokens.size() == 1 && tokens.get(0).toLowerCase().equals(Expression.FALSE.TERM.toLowerCase())) ? true : false ; 
 	}
 
+	@SuppressWarnings("static-access")
 	static boolean isConstantTrue(List<String> tokens) {
-		return (tokens.size() == 1 && tokens.get(0).equals("True")) ? true : false ; 
+		return (tokens.size() == 1 && tokens.get(0).toLowerCase().equals(Expression.TRUE.TERM.toLowerCase())) ? true : false ; 
 	}
 
 	static boolean isBinaryExpression(String operator,List<String> tokens) {

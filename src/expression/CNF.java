@@ -5,10 +5,10 @@ import expression.binaryExpression.AND;
 import expression.binaryExpression.IFF;
 import expression.binaryExpression.IMPLIES;
 import expression.binaryExpression.OR;
+import expression.binaryExpression.XOR;
 
 public class CNF extends MultiaryExpression{
 	
-	private String CNFString ; 
 	public static final String operator  = "&&" ; 
 	/**
 	 * <pre>
@@ -18,8 +18,7 @@ public class CNF extends MultiaryExpression{
 	 * @param es, an arrayList with all Expression being CNF
 	 */
 	public CNF(ArrayList<Expression> es ) {
-		super(operator,es) ; 
-		CNFString = convertToStringFormat(es ) ; 
+		super(operator,es) ;  
 	}
 	
 	public CNF(Expression e ) {
@@ -34,8 +33,6 @@ public class CNF extends MultiaryExpression{
 			}
 		}) ; 
 		es = convertToCNF(e ) ; 
-		
-		CNFString = convertToStringFormat(es ) ; 
 	}
 	
 	
@@ -111,6 +108,15 @@ public class CNF extends MultiaryExpression{
 			AND not1andnot2 = ExpressionFactory.createAND(not1, not2) ; 
 			OR e1ande2_or_not1andnot2 = ExpressionFactory.createOR(e1ande2, not1andnot2) ; 
 			result = convertToCNF(e1ande2_or_not1andnot2) ; 
+		}else if(e instanceof XOR ) {
+			XOR temp = (XOR ) e ; 
+			NOT not1 = ExpressionFactory.createNOT(temp.e1) ; 
+			NOT not2 = ExpressionFactory.createNOT(temp.e2) ; 
+			AND e1andnot2 = ExpressionFactory.createAND(temp.e1, not2) ; 
+			AND e2andnot1 = ExpressionFactory.createAND(temp.e2, not1) ; 
+			OR e1andnot2_or_e2andnot1 = ExpressionFactory.createOR(e1andnot2, e2andnot1) ; 
+			result = convertToCNF(e1andnot2_or_e2andnot1) ; 
+
 		}
 		return result ; 
 	}
@@ -129,12 +135,11 @@ public class CNF extends MultiaryExpression{
 				temp.add(e) ; 
 		}
 		this.es = temp ; 
-		CNFString = convertToStringFormat(this.es) ; 
 	}
 
 	@Override 
 	public String toString() {
-		return CNFString ; 
+		return convertToStringFormat(this.es) ;  
 	}
 	
 	public ArrayList<Expression> getExpressions() {

@@ -36,7 +36,7 @@ public class Variable extends Expression{
 	public static boolean isValidName(String input) {
 		if(input.isBlank())
 			return false ; 
-		return input.matches("[a-zA-Z]*") ; 
+		return input.matches("[a-zA-Z0-9]*") ; 
 	}
 
 	

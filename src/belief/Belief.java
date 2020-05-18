@@ -13,6 +13,10 @@ public class Belief {
 	private Expression e ; 
 	private int order ;
 	
+	/**
+	 * the default order of the belief is 10
+	 * @param e
+	 */
 	public Belief(Expression e ) {
 		this.e = e ; 
 		this.order = 10 ; 

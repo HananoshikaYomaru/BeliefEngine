@@ -3,6 +3,8 @@ package expression.constantExpression;
 import expression.Expression;
 
 public class FalseExpression extends Expression{
+	
+	public static final String TERM = "False"; 
 
 	public FalseExpression(){
 		setTruthTable() ; 
@@ -29,7 +31,7 @@ public class FalseExpression extends Expression{
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "False";
+		return TERM ;
 	}
 
 	@Override

@@ -7,6 +7,7 @@ import expression.binaryExpression.AND;
 import expression.binaryExpression.IFF;
 import expression.binaryExpression.IMPLIES;
 import expression.binaryExpression.OR;
+import expression.binaryExpression.XOR;
 
 public class ExpressionFactory {
 	
@@ -47,6 +48,12 @@ public class ExpressionFactory {
 		return temp ; 
 	}
 	
+	
+	/**
+	 * @param operator string of the operator
+	 * @param e1
+	 * @return
+	 */
 	public static UnaryExpression createUnary(String operator , Expression e1 ) {
 		return createUnaryHelp(operator ,e1) ; 
 	}
@@ -75,7 +82,8 @@ public class ExpressionFactory {
 			e = new IMPLIES(e1,e2) ; 
 		else if(operator.equals(IFF.operator))
 			e = new IFF(e1,e2) ; 
-			
+		else if(operator .equals(XOR.operator))
+			e = new XOR(e1,e2) ; 
 		if(e == null)
 			throw new RuntimeException("fail creation") ; 
 		e.init();

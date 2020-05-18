@@ -23,6 +23,7 @@ public class Operator {
 	public static final String CNF = expression.CNF.operator ; 
 	public static final String IMPLIES = expression.binaryExpression.IMPLIES.operator ; 
 	public static final String IFF = expression.binaryExpression.IFF.operator ; 
+	public static final String XOR = expression.binaryExpression.XOR.operator ; 
 	
 	static {
 		UnaryOperators.add(NOT) ; 
@@ -32,6 +33,7 @@ public class Operator {
 		BinaryOperators.add(OR )  ;
 		BinaryOperators.add(IMPLIES ) ; 
 		BinaryOperators.add(IFF)  ; 
+		BinaryOperators.add(XOR) ; 
 		
 		
 		MultiaryOperators.add(CNF )  ;

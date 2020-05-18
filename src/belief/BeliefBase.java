@@ -8,6 +8,7 @@ import annotation.NotDone;
 import expression.CNF;
 import expression.Expression;
 import expression.ExpressionFactory;
+import expression.NOT;
 
 public class BeliefBase {
 	private ArrayList< Belief> beliefs ; 
@@ -135,7 +136,7 @@ public class BeliefBase {
 		System.out.println(sb.toString()) ; 
 	}
 	
-	private ArrayList<Expression> getBeliefExpressionList(){
+	public  ArrayList<Expression> getBeliefExpressionList(){
 		ArrayList<Expression> temp = new ArrayList<Expression>() ; 
 		for(Belief belief : beliefs)
 			temp.add(belief.getExpression()) ; 
@@ -150,5 +151,18 @@ public class BeliefBase {
 	public boolean entail(Expression e ) {
 		Expression cnf = ExpressionFactory.createMultiary(CNF.operator, getBeliefExpressionList()) ; 
 		return Expression.logicalEntailment(cnf, e) ; 
+	}
+	
+	public void removeBelief(Belief b) {
+		this.beliefs.remove(b) ; 
+	}
+
+	
+	public void contract(Expression expression) {
+		Expression temp = ExpressionFactory.createUnary(NOT.operator, expression) ; 
+		Belief tempBelief = new Belief(temp) ; 
+		tempBelief.setOrder(11);
+		this.add(tempBelief);
+		this.removeBelief(tempBelief);
 	}
 }

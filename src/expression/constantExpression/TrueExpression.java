@@ -4,6 +4,8 @@ import expression.Expression;
 
 public class TrueExpression extends Expression{
 	
+	public static final String TERM = "True" ; 
+	
 	public TrueExpression() {
 		setTruthTable() ; 
 	}
@@ -29,7 +31,7 @@ public class TrueExpression extends Expression{
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "True";
+		return TERM;
 	}
 
 	@Override
